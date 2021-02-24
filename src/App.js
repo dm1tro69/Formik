@@ -3,6 +3,7 @@ import {Formik, Field, Form, useField, FieldArray} from 'formik'
 import {TextField, Button, Checkbox, Radio, FormControlLabel, Select, MenuItem} from "@material-ui/core";
 import * as Yup from 'yup'
 import * as uuid from "uuid";
+import Forms1 from "./Forms1";
 
 const MyRadio = ({label, ...props}) => {
     const [field] = useField(props)
@@ -26,78 +27,82 @@ const validationSchema = Yup.object({
 
 function App() {
   return (
-    <div >
-      <Formik initialValues={{firstName: '', lastName: '', isTall: false, cookies: [], yogurt: '', pets: [{type: 'cat', name: 'jarvis', id: uuid()}]}}
-              validationSchema={validationSchema}
-              // validate={(values)=> {
-              //     const errors = {}
-              //
-              //     if(values.firstName.includes('bob')){
-              //         errors.firstName = 'no bob'
-              //     }
-              //
-              //     return errors
-              // }}
-              onSubmit={(data, {setSubmitting})=> {
-          setSubmitting(true)
-          //make async call
-        console.log(data)
-          setSubmitting(false)
+      <>
+      <Forms1/>
 
-      }}>
-        {({values, errors, isSubmitting})=> (
-          <Form >
-              <MyTextField placeholder={'firstName'} type={'input'} name={'firstName'}/>
-              {/*<Field placeholder={'firstName'} type={'input'} name={'firstName'} as={TextField}/>*/}
-              <div>
-                  <MyTextField placeholder={'lastName'} type={'input'} name={'lastName'}/>
+    {/*  <div >*/}
+    {/*  <Formik initialValues={{firstName: '', lastName: '', isTall: false, cookies: [], yogurt: '', pets: [{type: 'cat', name: 'jarvis', id: uuid()}]}}*/}
+    {/*          validationSchema={validationSchema}*/}
+    {/*          // validate={(values)=> {*/}
+    {/*          //     const errors = {}*/}
+    {/*          //*/}
+    {/*          //     if(values.firstName.includes('bob')){*/}
+    {/*          //         errors.firstName = 'no bob'*/}
+    {/*          //     }*/}
+    {/*          //*/}
+    {/*          //     return errors*/}
+    {/*          // }}*/}
+    {/*          onSubmit={(data, {setSubmitting})=> {*/}
+    {/*      setSubmitting(true)*/}
+    {/*      //make async call*/}
+    {/*    console.log(data)*/}
+    {/*      setSubmitting(false)*/}
 
-              </div>
-              <div>
-                  <Field name={'isTall'} type={'checkbox'} as={Checkbox}/>
-                  <div>cookies: </div>
-                  <Field name={'cookies'} type={'checkbox'} as={Checkbox} value={'chocolate chip'}/>
-                  <Field name={'cookies'} type={'checkbox'} as={Checkbox} value={'snickerdoodle'}/>
-                  <Field name={'cookies'} type={'checkbox'} as={Checkbox} value={'sugar'}/>
-                  <div>yogurt:</div>
-                  <MyRadio name={'yogurt'} type={'radio'} value={'peach'} label={'peach'}/>
-                  <MyRadio name={'yogurt'} type={'radio'} value={'blueberry'}label={'blueberry'}/>
-                  <MyRadio name={'yogurt'} type={'radio'}  value={'apple'}label={'apple'}/>
+    {/*  }}>*/}
+    {/*    {({values, errors, isSubmitting})=> (*/}
+    {/*      <Form >*/}
+    {/*          <MyTextField placeholder={'firstName'} type={'input'} name={'firstName'}/>*/}
+    {/*          /!*<Field placeholder={'firstName'} type={'input'} name={'firstName'} as={TextField}/>*!/*/}
+    {/*          <div>*/}
+    {/*              <MyTextField placeholder={'lastName'} type={'input'} name={'lastName'}/>*/}
+
+    {/*          </div>*/}
+    {/*          <div>*/}
+    {/*              <Field name={'isTall'} type={'checkbox'} as={Checkbox}/>*/}
+    {/*              <div>cookies: </div>*/}
+    {/*              <Field name={'cookies'} type={'checkbox'} as={Checkbox} value={'chocolate chip'}/>*/}
+    {/*              <Field name={'cookies'} type={'checkbox'} as={Checkbox} value={'snickerdoodle'}/>*/}
+    {/*              <Field name={'cookies'} type={'checkbox'} as={Checkbox} value={'sugar'}/>*/}
+    {/*              <div>yogurt:</div>*/}
+    {/*              <MyRadio name={'yogurt'} type={'radio'} value={'peach'} label={'peach'}/>*/}
+    {/*              <MyRadio name={'yogurt'} type={'radio'} value={'blueberry'}label={'blueberry'}/>*/}
+    {/*              <MyRadio name={'yogurt'} type={'radio'}  value={'apple'}label={'apple'}/>*/}
 
 
-              </div>
-              <FieldArray name={'pets'}>
-                  {(arrayHelpers)=> (
-                      <div>
-                          {values.pets.map((pet, index)=> {
-                              const name = `pets.${index}.name`
-                              return (
-                                  <div key={pet.id}>
-                                      <MyTextField placeholder={'pet name'} name={name}/>
-                                      <Field name={`pets.${index}.type`} type={'select'} as={Select}>
-                                            <MenuItem value={'cat'}>cat</MenuItem>
-                                            <MenuItem value={'frog'}>frog</MenuItem>
-                                            <MenuItem value={'dog'}>dog</MenuItem>
-                                      </Field>
-                                  </div>
-                              )
-                          })}
-                      </div>
-                  )}
-              </FieldArray>
+    {/*          </div>*/}
+    {/*          <FieldArray name={'pets'}>*/}
+    {/*              {(arrayHelpers)=> (*/}
+    {/*                  <div>*/}
+    {/*                      {values.pets.map((pet, index)=> {*/}
+    {/*                          const name = `pets.${index}.name`*/}
+    {/*                          return (*/}
+    {/*                              <div key={pet.id}>*/}
+    {/*                                  <MyTextField placeholder={'pet name'} name={name}/>*/}
+    {/*                                  <Field name={`pets.${index}.type`} type={'select'} as={Select}>*/}
+    {/*                                        <MenuItem value={'cat'}>cat</MenuItem>*/}
+    {/*                                        <MenuItem value={'frog'}>frog</MenuItem>*/}
+    {/*                                        <MenuItem value={'dog'}>dog</MenuItem>*/}
+    {/*                                  </Field>*/}
+    {/*                              </div>*/}
+    {/*                          )*/}
+    {/*                      })}*/}
+    {/*                  </div>*/}
+    {/*              )}*/}
+    {/*          </FieldArray>*/}
 
-                <div>
-                    <Button disabled={isSubmitting} type={'submit'}>submit</Button>
+    {/*            <div>*/}
+    {/*                <Button disabled={isSubmitting} type={'submit'}>submit</Button>*/}
 
-                </div>
+    {/*            </div>*/}
 
-                <pre>{JSON.stringify(values, null, 2)}</pre>
-                <pre>{JSON.stringify(errors, null, 2)}</pre>
-          </Form>
-      )}
+    {/*            <pre>{JSON.stringify(values, null, 2)}</pre>*/}
+    {/*            <pre>{JSON.stringify(errors, null, 2)}</pre>*/}
+    {/*      </Form>*/}
+    {/*  )}*/}
 
-      </Formik>
-    </div>
+    {/*  </Formik>*/}
+    {/*</div>*/}
+      </>
   );
 }
 export default App
